@@ -1,12 +1,63 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { useEffect, useState } from 'react';
+import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
+import { persistor, store } from './redux/store';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import { createStackNavigator } from '@react-navigation/stack';
+import HomeScreen from './screens/HomeScreen';
+import { NavigationContainer } from '@react-navigation/native';
+import { dark } from './theme/colors';
+import TasksScreen from './screens/TasksScreen';
 
+const Stack = createStackNavigator();
 export default function App() {
+
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    setInterval(() => {
+      setVisible(!visible);
+    }, 2000);
+  }, []);
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Provider store={store}>
+      <PersistGate loading={
+        <ActivityIndicator size="large" color="#00ff00" />
+      } persistor={persistor}>
+
+        <StatusBar style="light" />
+        <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen name="Home"
+              options={{
+                headerStyle: {
+                  backgroundColor: dark,
+                },
+                headerTitleStyle: {
+                  color: '#fff'
+                }
+              }}
+              component={HomeScreen} />
+            <Stack.Screen name="Tasks"
+              options={{
+                headerStyle: {
+                  backgroundColor: dark,
+                },
+                headerTitleStyle: {
+                  color: '#fff'
+                }
+              }}
+              component={TasksScreen} />
+              
+          </Stack.Navigator>
+
+        </NavigationContainer>
+
+      </PersistGate>
+    </Provider>
+
+
   );
 }
 

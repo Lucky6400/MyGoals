@@ -1,0 +1,6 @@
+export const dark = '#353535'
+export const primary = '#4EC5F1'
+export const yellow = '#e7f20d'
+export const green = '#7fba00'
+export const danger = '#d34836'
+export const warning = '#ffa500'
