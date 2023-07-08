@@ -52,35 +52,39 @@ const HomeScreen = ({ navigation, route }) => {
           <Text style={styles.textWhite}>Pending Goals</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity 
-        onPress={() => {
-          navigation.navigate('Tasks', {
-            type: 'important'
-          })
-        }}
-        style={styles.listCard}>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate('Tasks', {
+              type: 'important'
+            })
+          }}
+          style={styles.listCard}>
           <FontAwesome5 name="exclamation-circle" size={24} color={danger} />
           <Text style={styles.textWhite}>Important Goals</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity 
-        onPress={() => {
-          navigation.navigate('Tasks', {
-            type: 'all'
-          })
-        }}
-        style={styles.listCard}>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate('Tasks', {
+              type: 'all'
+            })
+          }}
+          style={styles.listCard}>
           <FontAwesome5 name="tasks" size={24} color={primary} />
           <Text style={styles.textWhite}>All Goals</Text>
         </TouchableOpacity>
       </View>
 
-      <TouchableOpacity style={styles.listCard}>
+      {/* <TouchableOpacity
+        onPress={() => navigation.navigate('Settings')}
+        style={styles.listCard}>
         <Feather name="settings" size={24} color="gray" />
         <Text style={styles.textWhite}>Settings</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
 
-      <TouchableOpacity style={styles.listCard}>
+      <TouchableOpacity 
+      onPress={() => navigation.navigate('About')}
+      style={styles.listCard}>
         <AntDesign name="infocirlceo" size={24} color="white" />
         <Text style={styles.textWhite}>About</Text>
       </TouchableOpacity>

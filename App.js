@@ -9,6 +9,8 @@ import HomeScreen from './screens/HomeScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { dark } from './theme/colors';
 import TasksScreen from './screens/TasksScreen';
+import SettingsScreen from './screens/SettingsScreen';
+import AboutScreen from './screens/AboutScreen';
 
 const Stack = createStackNavigator();
 export default function App() {
@@ -49,7 +51,16 @@ export default function App() {
                 }
               }}
               component={TasksScreen} />
-              
+            <Stack.Screen name="About"
+              options={{
+                headerStyle: {
+                  backgroundColor: dark,
+                },
+                headerTitleStyle: {
+                  color: '#fff'
+                }
+              }}
+              component={AboutScreen} />
           </Stack.Navigator>
 
         </NavigationContainer>

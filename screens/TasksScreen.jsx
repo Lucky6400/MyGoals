@@ -82,7 +82,7 @@ const TasksScreen = ({ navigation, route }) => {
                             <>
                                 <TextInput
                                     onChangeText={e => setInput(e)}
-                                    value={input} multiline style={{ textAlignVertical: 'top', width: '90%', color: 'white', padding: 10 }} />
+                                    value={input} multiline style={{ textAlignVertical: 'top', width: '100%', color: 'white', padding: 10 }} />
                                 <Button
                                     onPress={() => {
                                         dispatch(taskAction.editTask({
@@ -98,7 +98,7 @@ const TasksScreen = ({ navigation, route }) => {
                                     title="Done" color={primary} />
                             </>
                             :
-                            <Text style={{ ...styles.textWhite, padding: 10, width: '90%' }}>
+                            <Text style={{ ...styles.textWhite, padding: 10, width: '75%' }}>
                                 {curr ? curr.description : ''}
                             </Text>
                         }
@@ -130,14 +130,30 @@ const TasksScreen = ({ navigation, route }) => {
                             </Text>
                         </View>
 
-                        <TouchableOpacity
-                            onPress={() => {
-                                setInput(curr.description);
-                                setEditMode(true);
-                            }}
-                            style={styles.editBtn}>
-                            <MaterialIcons name="mode-edit" size={24} color="black" />
-                        </TouchableOpacity>
+                        {!editMode ?
+                            <>
+                                <TouchableOpacity
+                                    onPress={() => {
+                                        setInput(curr.description);
+                                        setEditMode(true);
+                                    }}
+                                    style={styles.editBtn}>
+                                    <MaterialIcons name="mode-edit" size={24} color="black" />
+                                </TouchableOpacity>
+
+                                <TouchableOpacity
+                                    onPress={() => {
+                                        dispatch(taskAction.deleteTask(curr));
+                                        setModalVisible(false);
+                                        setIsEnabled(false);
+                                        setIsEnabled2(false);
+                                    }}
+                                    style={styles.deleteBtn}>
+                                    <MaterialIcons name="delete" size={24} color="white" />
+                                </TouchableOpacity>
+                            </>
+                            : <></>}
+
                     </View>
                 </View>
             </Modal>

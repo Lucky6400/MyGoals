@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { dark, primary } from "../theme/colors";
+import { danger, dark, primary } from "../theme/colors";
 
 export const styles = StyleSheet.create({
     homeCont: {
@@ -21,6 +21,7 @@ export const styles = StyleSheet.create({
         color: '#fff',
         fontWeight: 'bold',
         textTransform: 'capitalize',
+        paddingHorizontal: 10
     },
     listCont: {
         marginTop: 20,
@@ -88,6 +89,17 @@ export const styles = StyleSheet.create({
     centeredRow: {
         flexDirection: 'row',
         alignItems: 'center',
-        
+
+    },
+    deleteBtn: {
+        position: 'absolute',
+        top: 5,
+        right: 55,
+        width: 40,
+        height: 40,
+        borderRadius: 30,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: danger
     }
 })
