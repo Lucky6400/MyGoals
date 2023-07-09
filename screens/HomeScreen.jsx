@@ -7,15 +7,19 @@ import { Ionicons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { useSelector } from 'react-redux';
 
 const HomeScreen = ({ navigation, route }) => {
+  const tasks = useSelector(s => s.taskReducer.tasks);
+  const pendingTasks = tasks.filter(t => t.completed !== true).length;
+
   return (
     <View style={styles.homeCont}>
       <Text style={styles.headerText}>
-        Hey there, Lucky!
+        Hey there!
       </Text>
       <Text style={styles.headerText}>
-        You have 0 pending tasks.
+        You have {pendingTasks} pending tasks.
       </Text>
       <View style={styles.listCont}>
 
