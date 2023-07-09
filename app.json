@@ -20,11 +20,17 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      }
+        "backgroundColor": "#353535"
+      },
+      "package": "com.lucky6400.MyGoals"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "f1d2a451-9fe9-4ab0-8dcc-d804a5a3e2d7"
+      }
     }
   }
 }
