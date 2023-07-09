@@ -15,13 +15,6 @@ import AboutScreen from './screens/AboutScreen';
 const Stack = createStackNavigator();
 export default function App() {
 
-  const [visible, setVisible] = useState(false);
-  useEffect(() => {
-    setInterval(() => {
-      setVisible(!visible);
-    }, 2000);
-  }, []);
-
   return (
     <Provider store={store}>
       <PersistGate loading={
