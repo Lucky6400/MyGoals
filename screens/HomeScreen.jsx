@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
 import { styles } from '../styles/style'
 import { Feather } from '@expo/vector-icons';
@@ -8,13 +8,34 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useSelector } from 'react-redux';
+import { Calendar, LocaleConfig } from 'react-native-calendars';
 
 const HomeScreen = ({ navigation, route }) => {
   const tasks = useSelector(s => s.taskReducer.tasks);
   const pendingTasks = tasks.filter(t => t.completed !== true).length;
-
+  const [selected, setSelected] = useState('');
   return (
     <View style={styles.homeCont}>
+      <Calendar
+        onDayPress={day => {
+          setSelected(day.dateString);
+        }}
+        markedDates={{
+          [selected]: { selected: true, disableTouchEvent: true, selectedDotColor: 'orange' }
+        }}
+        theme={{
+          backgroundColor: '#313131',
+          calendarBackground: '#393939',
+          textSectionTitleColor: '#b6c1cd',
+          selectedDayBackgroundColor: primary,
+          selectedDayTextColor: '#ffffff',
+          todayTextColor: primary,
+          dayTextColor: '#ffffff',
+          monthTextColor: green,
+          textDisabledColor: '#7c7c7c'
+        }}
+        style={{ marginBottom: 20 }}
+      />
       <Text style={styles.headerText}>
         Hey there!
       </Text>
@@ -79,16 +100,9 @@ const HomeScreen = ({ navigation, route }) => {
         </TouchableOpacity>
       </View>
 
-      {/* <TouchableOpacity
-        onPress={() => navigation.navigate('Settings')}
+      <TouchableOpacity
+        onPress={() => navigation.navigate('About')}
         style={styles.listCard}>
-        <Feather name="settings" size={24} color="gray" />
-        <Text style={styles.textWhite}>Settings</Text>
-      </TouchableOpacity> */}
-
-      <TouchableOpacity 
-      onPress={() => navigation.navigate('About')}
-      style={styles.listCard}>
         <AntDesign name="infocirlceo" size={24} color="white" />
         <Text style={styles.textWhite}>About</Text>
       </TouchableOpacity>

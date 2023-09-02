@@ -66,7 +66,7 @@ const TasksScreen = ({ navigation, route }) => {
     console.log(widthOfWindow)
     return (
         <View style={{ ...styles.homeCont, paddingHorizontal: 10 }}>
-            <ScrollView>
+            <ScrollView contentContainerStyle={{ paddingTop: 20 }}>
                 {currentTasks?.map((v, i) => {
 
                     let bg = primary;
@@ -176,8 +176,9 @@ const TasksScreen = ({ navigation, route }) => {
                                 }}
                                 size={100}
                                 showsText
+                                thickness={15}
                                 formatText={(p) => curr?.progress + "%"}
-                                color={curr?.completed === true ? green : curr?.important === true ? danger : primary}
+                                color={primary}
                                 progress={((curr?.progress) / 100)} indeterminate={false} />
                             <TouchableOpacity
                                 onPress={() => {

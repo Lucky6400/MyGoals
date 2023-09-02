@@ -4,8 +4,7 @@ import { danger, dark, primary } from "../theme/colors";
 export const styles = StyleSheet.create({
     homeCont: {
         flex: 1,
-        backgroundColor: dark,
-        paddingTop: 30
+        backgroundColor: dark
     },
     listCard: {
         flexDirection: 'row',
