@@ -19,7 +19,7 @@ const HomeScreen = ({ navigation, route }) => {
         Hey there!
       </Text>
       <Text style={styles.headerText}>
-        You have {pendingTasks} pending tasks.
+        You have {pendingTasks} pending Goals.
       </Text>
       <View style={styles.listCont}>
 

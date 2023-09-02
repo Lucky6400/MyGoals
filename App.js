@@ -43,7 +43,8 @@ export default function App() {
                 },
                 headerTitleStyle: {
                   color: '#fff'
-                }
+                },
+                headerTitle: "Goals"
               }}
               component={TasksScreen} />
             <Stack.Screen name="About"

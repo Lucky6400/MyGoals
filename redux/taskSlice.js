@@ -17,6 +17,10 @@ export const taskSlice = createSlice({
         markTaskCompleted(state, action) {
             const newTasks = state.tasks;
             const currentIndex = newTasks.findIndex(task => task.id === action.payload.id)
+            if(newTasks[currentIndex].completed !== true) {
+                newTasks[currentIndex].progress = 100;
+            }
+            
             newTasks[currentIndex].completed = newTasks[currentIndex].completed === true ? false : true;
             state.tasks = newTasks;
         },
@@ -33,6 +37,28 @@ export const taskSlice = createSlice({
             const newTasks = state.tasks;
             const currentIndex = newTasks.findIndex(task => task.id === action.payload.id)
             newTasks[currentIndex] = action.payload.task;
+            state.tasks = newTasks;
+        },
+        addProgress(state, action) {
+            const newTasks = state.tasks;
+            const currentIndex = newTasks.findIndex(task => task.id === action.payload.id)
+            if( newTasks[currentIndex].progress < 100) {
+                newTasks[currentIndex].progress += 5;
+            }
+            state.tasks = newTasks;
+        },
+        minusProgress(state, action) {
+            const newTasks = state.tasks;
+            const currentIndex = newTasks.findIndex(task => task.id === action.payload.id)
+            if( newTasks[currentIndex].progress > 0) {
+                newTasks[currentIndex].progress -= 5;
+            }
+            state.tasks = newTasks;
+        },
+        changeDueDate(state, action) {
+            const newTasks = state.tasks;
+            const currentIndex = newTasks.findIndex(task => task.id === action.payload.id)
+            newTasks[currentIndex].dueDate = action.payload.date;
             state.tasks = newTasks;
         }
     }

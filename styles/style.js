@@ -33,7 +33,8 @@ export const styles = StyleSheet.create({
         width: '100%',
         padding: 10,
         borderRadius: 10,
-        marginBottom: 15
+        marginBottom: 15,
+        overflow: 'hidden',
     },
     taskName: {
         fontWeight: 600,
@@ -101,5 +102,31 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: danger
+    },
+    progressCont: {
+        flexDirection: 'row',
+        gap: 20,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: 20
+    },
+    progBtn: {
+        backgroundColor: '#ffffff',
+        width: 40,
+        height: 40,
+        borderRadius: 5,
+        color: '#000000',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    textWhiteBold: {
+        fontWeight: "600",
+        color: '#FFFFFF'
+    },
+    dateCont: {
+        backgroundColor: primary,
+        padding: 10,
+        borderRadius: 5,
+        marginVertical: 5
     }
 })

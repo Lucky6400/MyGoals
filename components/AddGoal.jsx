@@ -24,7 +24,9 @@ const AddGoal = () => {
                     description: text,
                     date: new Date().toString(),
                     completed: false,
-                    important: false
+                    important: false,
+                    progress: 0,
+                    dueDate: ''
                 }));
                 setText('');
             }
