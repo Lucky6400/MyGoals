@@ -8,21 +8,29 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useSelector } from 'react-redux';
-import { Calendar, LocaleConfig } from 'react-native-calendars';
+import { Calendar } from 'react-native-calendars';
+import { Modal } from 'react-native';
+import { Dimensions } from 'react-native';
+
+import * as Progress from 'react-native-progress';
+import { ScrollView } from 'react-native';
 
 const HomeScreen = ({ navigation, route }) => {
   const tasks = useSelector(s => s.taskReducer.tasks);
   const pendingTasks = tasks.filter(t => t.completed !== true).length;
   const [selected, setSelected] = useState('');
+  const [modalVisible, setModalVisible] = useState(false);
+  const heightOfWindow = Dimensions.get('window').height;
+  const todayTasks = tasks?.filter(v => new Date(selected).toDateString() === new Date(v.date).toDateString())
+
   return (
     <View style={styles.homeCont}>
       <Calendar
         onDayPress={day => {
           setSelected(day.dateString);
+          setModalVisible(true);
         }}
-        markedDates={{
-          [selected]: { selected: true, disableTouchEvent: true, selectedDotColor: 'orange' }
-        }}
+        
         theme={{
           backgroundColor: '#313131',
           calendarBackground: '#393939',
@@ -36,6 +44,57 @@ const HomeScreen = ({ navigation, route }) => {
         }}
         style={{ marginBottom: 20 }}
       />
+
+
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          setModalVisible(!modalVisible);
+        }}>
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <ScrollView
+              style={{ height: heightOfWindow / 1.2 }}
+              contentContainerStyle={{ padding: 10 }}>
+              {todayTasks.length > 0 ? todayTasks?.map((v, i) => {
+
+                let bg = primary;
+                let textColor = '#000000';
+                if (v.completed === true) bg = green;
+                else if (v.important === true) {
+                  bg = danger;
+                  textColor = '#FFFFFF';
+                }
+
+                return (
+                  <TouchableOpacity
+                    key={i + Date.now()} style={{ ...styles.taskCard, backgroundColor: bg, position: 'relative' }}>
+                    <Text style={{ ...styles.taskName, color: textColor }}>{new Date(v.date).toLocaleString()}</Text>
+                    <Text style={{ marginVertical: 10, color: textColor }}>
+                      {v.description.length > 100 ? v.description.slice(0, 100) + "..." : v.description}
+                    </Text>
+                    {v.completed !== true ?
+                      <Progress.Bar
+                        color='#FFFFFF'
+                        style={{ position: 'absolute', bottom: 0, left: 0 }} width={heightOfWindow - 20} progress={v.progress / 100} />
+                      : <></>}
+
+                  </TouchableOpacity>
+                )
+              })
+            :
+            <Text style={styles.textWhite}>
+              You have nothing to do on this day!
+            </Text>
+            }
+            </ScrollView>
+          </View>
+        </View>
+      </Modal>
+
+
       <Text style={styles.headerText}>
         Hey there!
       </Text>

@@ -24,7 +24,6 @@ const TasksScreen = ({ navigation, route }) => {
     const [isEnabled, setIsEnabled] = useState(curr ? curr.completed === true : false);
     const [isEnabled2, setIsEnabled2] = useState(curr ? curr.important === true : false);
     const [dateModal, setDateModal] = useState(false);
-    const [selectedDate, setSelectedDate] = useState(new Date().toDateString());
 
     const toggleSwitch = () => {
         dispatch(taskAction.markTaskCompleted(curr))
@@ -199,7 +198,7 @@ const TasksScreen = ({ navigation, route }) => {
 
                             <Text style={styles.textWhiteBold}>Due Date: </Text>
                             <TouchableOpacity style={styles.dateCont} onPress={() => setDateModal(true)}>
-                                <Text style={{ ...styles.textWhite, fontSize: 18 }}>{curr?.dueDate ?? "N.A"}</Text>
+                                <Text style={{ ...styles.textWhite, fontSize: 18 }}>{curr?.dueDate || "N.A"}</Text>
                             </TouchableOpacity>
                         </View>
 

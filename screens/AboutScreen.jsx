@@ -5,7 +5,7 @@ import { styles } from '../styles/style'
 const AboutScreen = () => {
     return (
         <View style={styles.homeCont}>
-            <ScrollView>
+            <ScrollView contentContainerStyle={{ padding: 10 }}>
                 <Text style={styles.textWhite}>
 
                     Welcome to MyGoals, the ultimate Android app designed to help you stay organized and focused on achieving your goals. Developed by Lucky Jain, MyGoals is your go-to companion for effective goal management and tracking. With its intuitive interface and powerful features, this app is here to revolutionize the way you set, monitor, and accomplish your goals. {"\n\n"}
